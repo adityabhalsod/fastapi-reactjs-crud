@@ -22,6 +22,52 @@ A modern full-stack CRUD application built with FastAPI (Python) backend and Rea
 - ✅ Native Fetch API for HTTP requests
 - ✅ Docker containerized
 
+## Screenshots
+
+### Authentication
+
+#### Login Page
+![Login](screenshots/Login.png)
+
+#### Signup Page
+![Signup](screenshots/Signup.png)
+![Signup Form](screenshots/Signup%20Fillup.png)
+
+#### Forgot Password
+![Forgot Password](screenshots/Forgot%20Password%20%20-%20Coming%20Soon.png)
+
+### Dashboard
+
+#### Dashboard Overview
+![Complete Dashboard](screenshots/Complete%20Dashboard.png)
+
+#### Empty Dashboard
+![Dashboard Empty](screenshots/Dashboard%20Empty.png)
+
+#### User Menu
+![Dropdown Menu](screenshots/Dropdown%20of%20logout%20button.png)
+
+### Items Management
+
+#### Items List - Empty State
+![Empty Table](screenshots/Empty%20table.png)
+
+#### Items List - With Data
+![Table with Data](screenshots/Table%20fillup.png)
+![Complete Table](screenshots/Compelte%20Table.png)
+
+#### Create New Item
+![Create Item](screenshots/Create%20new%20items.png)
+
+#### Edit Item
+![Edit Item](screenshots/Edit%20Items.png)
+
+#### Item Details
+![Item Details](screenshots/Items%20Details%20Page.png)
+
+#### Delete Confirmation
+![Delete Confirmation](screenshots/Delete%20Item%20Confirmation%20Box.png)
+
 ## Quick Start
 
 ### Prerequisites
