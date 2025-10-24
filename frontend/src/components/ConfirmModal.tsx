@@ -76,10 +76,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
                 </svg>
               )}
             </div>
-            <h3 className="ml-3 text-lg font-medium text-gray-900">{title}</h3>
+            <h3 className="ml-3 text-lg font-medium">{title}</h3>
           </div>
 
-          <p className="text-sm text-gray-600 mb-6">{message}</p>
+          <p className="text-sm mb-6">{message}</p>
 
           <div className="flex justify-end space-x-3">
             <button

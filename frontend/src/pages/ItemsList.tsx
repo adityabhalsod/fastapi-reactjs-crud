@@ -93,10 +93,22 @@ const ItemsList: React.FC = () => {
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
+        <div className="mb-6">
+          <Link
+            to="/dashboard"
+            className="inline-flex items-center text-primary-400 hover:text-primary-300 mb-4 transition-colors"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Dashboard
+          </Link>
+        </div>
+        
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Items</h1>
-            <p className="text-white/80">Manage your items ({total} total)</p>
+            <h1 className="text-4xl font-bold mb-2">Items</h1>
+            <p className="text-secondary">Manage your items ({total} total)</p>
           </div>
           <Link
             to="/items/new"
@@ -110,29 +122,22 @@ const ItemsList: React.FC = () => {
         </div>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+          <div className="alert alert-error mb-6">
             {error}
           </div>
         )}
 
         {/* Filters */}
-        <div className="glass-card mb-6">
+        <div className="card mb-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium mb-2 text-secondary">
                 Search
               </label>
               <div className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search items by name or description..."
-                  className="input-field pl-10"
-                />
                 <svg
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted pointer-events-none z-10"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -144,12 +149,19 @@ const ItemsList: React.FC = () => {
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="     Search items by name or description..."
+                  className="input-field pl-10"
+                />
               </div>
             </div>
 
             {/* Category Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium mb-2 text-secondary">
                 Category
               </label>
               <select
@@ -171,7 +183,7 @@ const ItemsList: React.FC = () => {
 
             {/* Sort */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium mb-2 text-secondary">
                 Sort By
               </label>
               <select
@@ -195,32 +207,20 @@ const ItemsList: React.FC = () => {
         </div>
 
         {/* Items Table */}
-        <div className="glass-card overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50/50">
+        <div className="table-container">
+          <div className="table-wrapper">
+            <table>
+              <thead>
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Category
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Price
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Quantity
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Actions
-                  </th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                  <th style={{textAlign: 'right'}}>Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white/30 divide-y divide-gray-200">
+              <tbody>
                 {loading ? (
                   // Loading skeletons
                   Array.from({ length: 5 }).map((_, idx) => (
@@ -232,7 +232,8 @@ const ItemsList: React.FC = () => {
                     <td colSpan={6} className="px-6 py-12 text-center">
                       <div className="flex flex-col items-center justify-center">
                         <svg
-                          className="w-16 h-16 text-gray-400 mb-4"
+                          className="w-16 h-16 mb-4"
+                          style={{color: 'var(--text-muted)'}}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -244,8 +245,8 @@ const ItemsList: React.FC = () => {
                             d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
                           />
                         </svg>
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">No items found</h3>
-                        <p className="text-gray-600 mb-4">
+                        <h3 className="text-lg font-medium mb-2">No items found</h3>
+                        <p className="text-secondary mb-4">
                           {searchQuery || category
                             ? 'Try adjusting your filters'
                             : 'Get started by creating your first item'}
@@ -264,46 +265,46 @@ const ItemsList: React.FC = () => {
                 ) : (
                   // Items rows
                   items.map((item) => (
-                    <tr key={item.id} className="hover:bg-white/20 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                    <tr key={item.id}>
+                      <td>
                         <div className="flex items-center">
                           <div>
-                            <div className="text-sm font-medium text-gray-900">{item.name}</div>
+                            <div className="text-sm font-medium">{item.name}</div>
                             {item.description && (
-                              <div className="text-sm text-gray-600 truncate max-w-xs">
+                              <div className="text-sm text-secondary truncate max-w-xs">
                                 {item.description}
                               </div>
                             )}
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                      <td>
+                        <span className="badge badge-info">
                           {item.category || 'Uncategorized'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td>
                         ${Number(item.price).toFixed(2)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td>
                         {item.quantity}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td>
                         <span
-                          className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          className={`badge ${
                             item.is_active
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-gray-100 text-gray-800'
+                              ? 'badge-success'
+                              : 'badge-gray'
                           }`}
                         >
                           {item.is_active ? 'Active' : 'Inactive'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <td className="actions">
                         <div className="flex justify-end space-x-2">
                           <button
                             onClick={() => navigate(`/items/${item.id}`)}
-                            className="text-blue-600 hover:text-blue-900 p-1 hover:bg-blue-100 rounded transition-colors"
+                            className="table-action-btn action-view"
                             title="View"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -323,7 +324,7 @@ const ItemsList: React.FC = () => {
                           </button>
                           <button
                             onClick={() => navigate(`/items/${item.id}/edit`)}
-                            className="text-yellow-600 hover:text-yellow-900 p-1 hover:bg-yellow-100 rounded transition-colors"
+                            className="table-action-btn action-edit"
                             title="Edit"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -337,7 +338,7 @@ const ItemsList: React.FC = () => {
                           </button>
                           <button
                             onClick={() => setDeleteModal({ isOpen: true, item })}
-                            className="text-red-600 hover:text-red-900 p-1 hover:bg-red-100 rounded transition-colors"
+                            className="table-action-btn action-delete"
                             title="Delete"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -360,26 +361,26 @@ const ItemsList: React.FC = () => {
 
           {/* Pagination */}
           {!loading && items.length > 0 && (
-            <div className="bg-white/50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+            <div className="pagination-container">
               <div className="flex-1 flex justify-between sm:hidden">
                 <button
                   onClick={() => setPage(Math.max(1, page - 1))}
                   disabled={page === 1}
-                  className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                  className="btn-secondary"
                 >
                   Previous
                 </button>
                 <button
                   onClick={() => setPage(Math.min(totalPages, page + 1))}
                   disabled={page === totalPages}
-                  className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                  className="btn-secondary ml-3"
                 >
                   Next
                 </button>
               </div>
               <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm text-gray-700">
+                  <p className="text-sm">
                     Showing <span className="font-medium">{(page - 1) * limit + 1}</span> to{' '}
                     <span className="font-medium">{Math.min(page * limit, total)}</span> of{' '}
                     <span className="font-medium">{total}</span> results
@@ -390,7 +391,7 @@ const ItemsList: React.FC = () => {
                     <button
                       onClick={() => setPage(Math.max(1, page - 1))}
                       disabled={page === 1}
-                      className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                      className="btn-secondary rounded-r-none"
                     >
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                         <path
@@ -407,10 +408,8 @@ const ItemsList: React.FC = () => {
                         <button
                           key={pageNum}
                           onClick={() => setPage(pageNum)}
-                          className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                            page === pageNum
-                              ? 'z-10 bg-primary-50 border-primary-500 text-primary-600'
-                              : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                          className={`pagination-number ${
+                            page === pageNum ? 'active' : ''
                           }`}
                         >
                           {pageNum}
@@ -421,7 +420,7 @@ const ItemsList: React.FC = () => {
                     <button
                       onClick={() => setPage(Math.min(totalPages, page + 1))}
                       disabled={page === totalPages}
-                      className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                      className="btn-secondary rounded-l-none"
                     >
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                         <path

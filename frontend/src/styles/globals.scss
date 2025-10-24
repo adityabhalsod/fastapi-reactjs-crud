@@ -93,12 +93,57 @@ code {
 }
 
 // Utility text classes
+.text-primary {
+  color: var(--text-primary);
+}
+
 .text-secondary {
   color: var(--text-secondary);
 }
 
 .text-muted {
   color: var(--text-muted);
+}
+
+// Border utility
+.border-color {
+  border-color: var(--border-color);
+}
+
+// Pagination styles
+.pagination-container {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagination-number {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--duration-fast) var(--ease-in-out);
+  border-radius: 0;
+  
+  &:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-color-hover);
+  }
+  
+  &.active {
+    background: var(--primary-600);
+    border-color: var(--primary-500);
+    color: white;
+    z-index: 10;
+  }
 }
 
 // Dashboard specific styles
