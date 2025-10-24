@@ -18,12 +18,12 @@
   flex-direction: column;
 }
 
-// Glass morphism effect
-@mixin glass-morphism($opacity: 0.25, $blur: 16px) {
-  background: rgba(255, 255, 255, $opacity);
+// Glass morphism effect - Black Matte Theme
+@mixin glass-morphism($opacity: 0.95, $blur: 16px) {
+  background: var(--bg-card);
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--border-color);
 }
 
 // Button mixins
@@ -50,12 +50,13 @@
 @mixin button-primary {
   @include button-base;
   background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
-  color: white;
+  color: var(--gray-50);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
   
   &:hover:not(:disabled) {
-    background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
     transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 6px -1px rgba(6, 182, 212, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
   }
   
   &:active {
@@ -65,24 +66,24 @@
 
 @mixin button-secondary {
   @include button-base;
-  background: var(--gray-100);
-  color: var(--gray-700);
-  border: 1px solid var(--gray-300);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   
   &:hover:not(:disabled) {
-    background: var(--gray-200);
-    border-color: var(--gray-400);
+    background: var(--bg-tertiary);
+    border-color: rgba(6, 182, 212, 0.3);
   }
 }
 
 @mixin button-ghost {
   @include button-base;
   background: transparent;
-  color: var(--gray-600);
+  color: var(--text-secondary);
   
   &:hover:not(:disabled) {
-    background: var(--gray-100);
-    color: var(--gray-900);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
   }
 }
 
@@ -90,21 +91,21 @@
 @mixin input-base {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   font-size: 0.875rem;
-  background: white;
+  background: var(--bg-secondary);
   transition: all var(--duration-fast) var(--ease-in-out);
-  color: var(--gray-50);
+  color: var(--text-primary);
   
   &:focus {
     outline: none;
     border-color: var(--primary-500);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
   }
   
   &::placeholder {
-    color: var(--gray-400);
+    color: var(--text-tertiary);
   }
   
   &:disabled {
@@ -116,14 +117,18 @@
 
 // Card component mixin
 @mixin card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--gray-200);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  transition: all var(--duration-normal) var(--ease-in-out);
   
   &:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    border-color: var(--border-color-hover);
   }
 }
 

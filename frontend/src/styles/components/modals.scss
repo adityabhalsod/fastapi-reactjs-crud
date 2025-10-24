@@ -1,12 +1,12 @@
-// Modal component styles
+// Modal component styles - Black Matte Theme
 @import '../variables';
 @import '../mixins';
 
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
   z-index: 50;
   animation: fadeIn var(--duration-fast) var(--ease-in-out);
 }
@@ -23,12 +23,14 @@
 }
 
 .modal {
-  @include glass-morphism(0.95);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
   max-width: 32rem;
   width: 100%;
   padding: var(--spacing-xl);
-  box-shadow: var(--shadow-2xl);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   animation: bounceIn var(--duration-normal) var(--ease-out);
   
   .modal-header {
@@ -40,7 +42,7 @@
     .modal-title {
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--gray-900);
+      color: var(--text-primary);
     }
     
     .modal-close {
@@ -48,20 +50,20 @@
       height: 2rem;
       border: none;
       background: transparent;
-      color: var(--gray-500);
+      color: var(--text-secondary);
       cursor: pointer;
       border-radius: var(--radius-md);
       transition: all var(--duration-fast) var(--ease-in-out);
       
       &:hover {
-        background: var(--gray-100);
-        color: var(--gray-700);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
       }
     }
   }
   
   .modal-body {
-    color: var(--gray-700);
+    color: var(--text-secondary);
     margin-bottom: var(--spacing-lg);
   }
   

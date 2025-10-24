@@ -50,7 +50,7 @@ class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 via-purple-500 to-purple-700 p-4">
+        <div className="min-h-screen flex items-center justify-center p-4">
           <div className="glass-card max-w-2xl w-full p-8">
             <div className="text-center mb-6">
               <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">

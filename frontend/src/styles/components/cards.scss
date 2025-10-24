@@ -1,17 +1,26 @@
-// Card component styles
+// Card component styles - Black Matte Theme
 @import '../variables';
 @import '../mixins';
 
 .card {
-  @include glass-morphism;
-  @include fade-in;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
   transition: all var(--duration-normal) var(--ease-in-out);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  animation: fadeIn var(--duration-normal) var(--ease-out);
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+    background: var(--bg-card-hover);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color-hover);
   }
   
   &.card-interactive {
@@ -27,7 +36,23 @@
   }
   
   &.card-bordered {
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(6, 182, 212, 0.3);
+  }
+}
+
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  transition: all var(--duration-normal) var(--ease-in-out);
+  
+  &:hover {
+    border-color: var(--border-color-hover);
   }
 }
 
@@ -44,37 +69,59 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
     
     &.stat-icon-blue {
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--primary-600);
+      background: rgba(6, 182, 212, 0.18);
+      color: #22d3ee;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
     }
     
     &.stat-icon-green {
-      background: rgba(16, 185, 129, 0.1);
-      color: var(--success);
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
     }
     
     &.stat-icon-purple {
-      background: rgba(168, 85, 247, 0.1);
-      color: var(--secondary-600);
+      background: rgba(168, 85, 247, 0.18);
+      color: #a78bfa;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
     }
     
     &.stat-icon-yellow {
-      background: rgba(245, 158, 11, 0.1);
-      color: var(--warning);
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
     }
   }
   
   .stat-value {
     font-size: 2rem;
-    font-weight: bold;
-    color: var(--gray-900);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
   }
   
   .stat-label {
     font-size: 0.875rem;
-    color: var(--gray-600);
+    color: var(--text-secondary);
     margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+}
+
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  transition: all var(--duration-normal) var(--ease-in-out);
+  
+  &:hover {
+    border-color: rgba(6, 182, 212, 0.3);
   }
 }

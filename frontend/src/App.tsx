@@ -19,7 +19,7 @@ const App: React.FC = () => {
       <AuthProvider>
         <ToastProvider>
           <Router>
-            <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-purple-700">
+            <div className="min-h-screen">
               <Routes>
                 {/* Public routes */}
             <Route path="/login" element={<Login />} />
