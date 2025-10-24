@@ -560,6 +560,59 @@ const appCommands = {
     }
   },
 
+  'seed': {
+    description: 'Seed database with sample data',
+    action: async () => {
+      colorLog('🌱 Seeding database with sample data...', 'cyan');
+      colorLog('═'.repeat(60), 'cyan');
+      
+      // Check if we should use Docker or local environment
+      const useDocker = process.argv.includes('--docker');
+      
+      if (useDocker) {
+        // Use Docker container
+        colorLog('📦 Using Docker container...', 'yellow');
+        try {
+          runCommand(`${getDockerCommand()} exec backend python seed.py`);
+          colorLog('\n✅ Database seeded successfully!', 'green');
+          colorLog('\n🔐 Login credentials:', 'cyan');
+          colorLog('   Username: test', 'white');
+          colorLog('   Password: test', 'white');
+        } catch (error) {
+          colorLog('\n❌ Seeding failed. Make sure Docker containers are running.', 'red');
+          colorLog('💡 Try: node setup.js docker', 'yellow');
+        }
+      } else {
+        // Use local Python environment
+        if (!checkBackendVenv()) {
+          colorLog('❌ Backend virtual environment not found', 'red');
+          colorLog('💡 Run: node setup.js backend-setup', 'yellow');
+          colorLog('💡 Or use Docker: node setup.js seed --docker', 'yellow');
+          return;
+        }
+
+        const backendPath = path.join(process.cwd(), 'backend');
+        const isWindows = process.platform === 'win32';
+        const pythonCmd = isWindows
+          ? path.join('venv', 'Scripts', 'python')
+          : path.join('venv', 'bin', 'python');
+
+        colorLog('🐍 Using local Python environment...', 'yellow');
+        
+        try {
+          runCommand(`${pythonCmd} seed.py`, { cwd: backendPath });
+          colorLog('\n✅ Database seeded successfully!', 'green');
+          colorLog('\n🔐 Login credentials:', 'cyan');
+          colorLog('   Username: test', 'white');
+          colorLog('   Password: test', 'white');
+        } catch (error) {
+          colorLog('\n❌ Seeding failed. Make sure database is running.', 'red');
+          colorLog('💡 Start database: node setup.js docker', 'yellow');
+        }
+      }
+    }
+  },
+
   'test-backend': {
     description: 'Run backend tests',
     action: async () => {
@@ -655,6 +708,7 @@ function showHelp() {
 
   colorLog('\n🗄️  Database:', 'yellow');
   colorLog('  shell-db           - Open PostgreSQL shell', 'white');
+  colorLog('  seed               - Seed database with sample data', 'white');
   colorLog('  reset              - Reset database (DELETE ALL DATA)', 'white');
 
   colorLog('\n🛠️  Development Tools:', 'yellow');

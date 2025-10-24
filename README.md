@@ -42,11 +42,77 @@ cd fastapi-reactjs-crud
 docker-compose up --build
 ```
 
-3. Access the application:
+3. Seed the database with sample data:
+```bash
+node setup.js seed --docker
+```
+
+This will create a demo user and 15 sample items:
+- **Username**: `test`
+- **Password**: `test`
+- **Email**: test@example.com
+
+4. Access the application:
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8000
 - **API Documentation**: http://localhost:8000/docs
 - **Database**: localhost:5432
+
+## Setup Commands
+
+The project includes a convenient `setup.js` script for managing the application:
+
+### Initial Setup
+```bash
+node setup.js setup              # Complete setup (database + backend + frontend)
+node setup.js backend-setup      # Setup backend only (venv, dependencies)
+```
+
+### Development
+```bash
+node setup.js docker             # Start with Docker (recommended)
+node setup.js backend            # Start backend server (local)
+node setup.js frontend           # Start frontend dev server (local)
+```
+
+### Database Management
+```bash
+node setup.js seed               # Seed database with sample data (local)
+node setup.js seed --docker      # Seed database with sample data (Docker)
+node setup.js reset              # Reset database (DELETE ALL DATA)
+node setup.js shell-db           # Open PostgreSQL shell
+```
+
+### Docker Commands
+```bash
+node setup.js docker-build       # Build and start all services
+node setup.js up                 # Start Docker services
+node setup.js down               # Stop Docker services
+node setup.js restart            # Restart Docker services
+```
+
+### Logs & Monitoring
+```bash
+node setup.js logs               # View all service logs
+node setup.js logs-backend       # View backend logs
+node setup.js logs-frontend      # View frontend logs
+node setup.js status             # Show service status
+```
+
+### Help
+```bash
+node setup.js help               # Show all available commands
+```
+
+## Sample Data
+
+After seeding the database, you'll have access to:
+- **1 demo user** (username: `test`, password: `test`)
+- **15 sample items** across multiple categories:
+  - Electronics (Laptop, Mouse, Keyboard, Webcam, etc.)
+  - Accessories (USB Hub, Monitor Stand, Cable Management, etc.)
+  - Furniture (Office Chair, Desk Lamp)
+  - Stationery (Notebooks, Pens, Desk Organizer)
 
 ## Development Status
 
