@@ -33,6 +33,7 @@
   font-size: 0.875rem;
   transition: all var(--duration-fast) var(--ease-in-out);
   background: white;
+  color: var(--gray-50);
   
   &:focus {
     outline: none;
