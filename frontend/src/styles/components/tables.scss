@@ -1,0 +1,191 @@
+// Table component styles
+@import '../variables';
+@import '../mixins';
+
+.table-container {
+  @include glass-morphism;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  
+  .table-wrapper {
+    overflow-x: auto;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  thead {
+    background: rgba(249, 250, 251, 0.5);
+    
+    th {
+      padding: 0.75rem 1.5rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-700);
+      border-bottom: 1px solid var(--gray-200);
+      
+      &.sortable {
+        cursor: pointer;
+        user-select: none;
+        
+        &:hover {
+          background: rgba(243, 244, 246, 0.8);
+        }
+      }
+    }
+  }
+  
+  tbody {
+    background: rgba(255, 255, 255, 0.3);
+    
+    tr {
+      border-bottom: 1px solid var(--gray-200);
+      transition: background var(--duration-fast) var(--ease-in-out);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
+    td {
+      padding: 1rem 1.5rem;
+      font-size: 0.875rem;
+      color: var(--gray-900);
+      
+      &.actions {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+// Table badges
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  
+  &.badge-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+  }
+  
+  &.badge-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+  }
+  
+  &.badge-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+  }
+  
+  &.badge-info {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--info);
+  }
+  
+  &.badge-gray {
+    background: rgba(107, 114, 128, 0.1);
+    color: var(--gray-600);
+  }
+}
+
+// Table action buttons
+.table-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-in-out);
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+  
+  &.action-view {
+    color: var(--info);
+    
+    &:hover {
+      background: rgba(59, 130, 246, 0.1);
+    }
+  }
+  
+  &.action-edit {
+    color: var(--warning);
+    
+    &:hover {
+      background: rgba(245, 158, 11, 0.1);
+    }
+  }
+  
+  &.action-delete {
+    color: var(--error);
+    
+    &:hover {
+      background: rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+// Pagination
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid var(--gray-200);
+  
+  .pagination-info {
+    font-size: 0.875rem;
+    color: var(--gray-700);
+  }
+  
+  .pagination-controls {
+    display: flex;
+    gap: 0.5rem;
+    
+    button {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--gray-300);
+      background: white;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-in-out);
+      
+      &:hover:not(:disabled) {
+        background: var(--gray-50);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      
+      &.active {
+        background: var(--primary-600);
+        color: white;
+        border-color: var(--primary-600);
+      }
+    }
+  }
+}

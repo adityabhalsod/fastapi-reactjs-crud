@@ -16,9 +16,10 @@ Full-stack CRUD application with authentication system running entirely in Docke
 
 ### Frontend
 - **Framework**: React 18 with TypeScript
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS + SCSS (for custom styling and mixins)
 - **HTTP Client**: Fetch API (no external libraries like Axios)
 - **State Management**: React Hooks (useState, useEffect, useContext)
+- **CSS Preprocessor**: SCSS for advanced styling features and mixins
 
 ### Infrastructure
 - **Container Orchestration**: Docker Compose
@@ -453,12 +454,15 @@ CREATE INDEX idx_items_name ON items(name);
    - Toast notifications (success, error, info)
    - Confirmation modals for delete actions
 
-3. **Animations**:
+3. **Animations & SCSS Features**:
    - Fade in on page load
    - Slide transitions between pages
    - Button ripple effects
    - Skeleton loaders for data fetching
    - Smooth scroll
+   - SCSS mixins for reusable styles
+   - Variables for consistent theming
+   - Nested selectors for component styling
 
 4. **Responsive Design**:
    - Mobile-first approach
@@ -552,6 +556,11 @@ project/
     └── src/
         ├── App.tsx
         ├── main.tsx
+        ├── styles/
+        │   ├── globals.scss
+        │   ├── variables.scss
+        │   ├── mixins.scss
+        │   └── components/
         ├── components/
         ├── pages/
         ├── context/

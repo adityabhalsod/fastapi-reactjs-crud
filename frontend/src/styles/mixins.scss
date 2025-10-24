@@ -1,0 +1,216 @@
+// Utility mixins for common styling patterns
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Glass morphism effect
+@mixin glass-morphism($opacity: 0.25, $blur: 16px) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+// Button mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all var(--duration-fast) var(--ease-in-out);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+  
+  &:hover:not(:disabled) {
+    background: var(--gray-200);
+    border-color: var(--gray-400);
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background: transparent;
+  color: var(--gray-600);
+  
+  &:hover:not(:disabled) {
+    background: var(--gray-100);
+    color: var(--gray-900);
+  }
+}
+
+// Input field mixins
+@mixin input-base {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: white;
+  transition: all var(--duration-fast) var(--ease-in-out);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--gray-400);
+  }
+  
+  &:disabled {
+    background: var(--gray-50);
+    color: var(--gray-500);
+    cursor: not-allowed;
+  }
+}
+
+// Card component mixin
+@mixin card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// Loading spinner mixin
+@mixin spinner($size: 1.5rem, $color: var(--primary-600)) {
+  width: $size;
+  height: $size;
+  border: 2px solid transparent;
+  border-top: 2px solid $color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Truncate text mixin
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Line clamp mixin
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Responsive breakpoints
+@mixin mobile-only {
+  @media (max-width: 639px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin large-desktop-up {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+// Animation mixins
+@mixin fade-in($duration: var(--duration-normal)) {
+  animation: fadeIn $duration var(--ease-out);
+}
+
+@mixin slide-up($duration: var(--duration-normal)) {
+  animation: slideUp $duration var(--ease-out);
+}
+
+@mixin bounce-in($duration: 0.6s) {
+  animation: bounceIn $duration var(--ease-out);
+}
+
+// Hover effect mixin
+@mixin hover-lift {
+  transition: transform var(--duration-fast) var(--ease-out);
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Focus ring mixin
+@mixin focus-ring($color: var(--primary-500)) {
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba($color, 0.1);
+  }
+}
+
+// Gradient text mixin
+@mixin gradient-text($from: var(--primary-600), $to: var(--secondary-600)) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

@@ -1,0 +1,262 @@
+@import 'variables';
+@import 'mixins';
+@import 'components/cards';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/modals';
+@import 'components/tables';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Reset and base styles
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: var(--gray-900);
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+// Global animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes ripple {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+// Global utility classes
+.glass-card {
+  @include glass-morphism;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+}
+
+.btn-primary {
+  @include button-primary;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-secondary {
+  @include button-secondary;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-ghost {
+  @include button-ghost;
+  padding: 0.75rem 1.5rem;
+}
+
+.input-field {
+  @include input-base;
+}
+
+.card {
+  @include card;
+}
+
+.spinner {
+  @include spinner;
+}
+
+.fade-in {
+  @include fade-in;
+}
+
+.slide-up {
+  @include slide-up;
+}
+
+.bounce-in {
+  @include bounce-in;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: var(--radius-full);
+  
+  &:hover {
+    background: var(--gray-400);
+  }
+}
+
+// Loading states
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--gray-200) 25%, var(--gray-100) 50%, var(--gray-200) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Toast notifications
+.toast {
+  @include glass-morphism;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  color: white;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  
+  &.toast-success {
+    background: rgba(16, 185, 129, 0.9);
+  }
+  
+  &.toast-error {
+    background: rgba(239, 68, 68, 0.9);
+  }
+  
+  &.toast-info {
+    background: rgba(59, 130, 246, 0.9);
+  }
+  
+  &.toast-warning {
+    background: rgba(245, 158, 11, 0.9);
+  }
+}
+
+// Form validation styles
+.field-error {
+  border-color: var(--error) !important;
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+  }
+}
+
+.field-success {
+  border-color: var(--success) !important;
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+  }
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 0.75rem;
+  margin-top: var(--spacing-xs);
+}
+
+.success-message {
+  color: var(--success);
+  font-size: 0.75rem;
+  margin-top: var(--spacing-xs);
+}
+
+// Dark mode support (optional)
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-50: #1f2937;
+    --gray-100: #374151;
+    --gray-200: #4b5563;
+    --gray-300: #6b7280;
+    --gray-400: #9ca3af;
+    --gray-500: #d1d5db;
+    --gray-600: #e5e7eb;
+    --gray-700: #f3f4f6;
+    --gray-800: #f9fafb;
+    --gray-900: #ffffff;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: var(--gray-900);
+  }
+}

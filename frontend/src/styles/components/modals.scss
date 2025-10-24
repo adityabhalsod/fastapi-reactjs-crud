@@ -1,0 +1,116 @@
+// Modal component styles
+@import '../variables';
+@import '../mixins';
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  animation: fadeIn var(--duration-fast) var(--ease-in-out);
+}
+
+.modal-container {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  animation: fadeIn var(--duration-fast) var(--ease-in-out);
+}
+
+.modal {
+  @include glass-morphism(0.95);
+  border-radius: var(--radius-xl);
+  max-width: 32rem;
+  width: 100%;
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-2xl);
+  animation: bounceIn var(--duration-normal) var(--ease-out);
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+    
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    
+    .modal-close {
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background: transparent;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all var(--duration-fast) var(--ease-in-out);
+      
+      &:hover {
+        background: var(--gray-100);
+        color: var(--gray-700);
+      }
+    }
+  }
+  
+  .modal-body {
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+  }
+  
+  // Modal sizes
+  &.modal-sm {
+    max-width: 24rem;
+  }
+  
+  &.modal-lg {
+    max-width: 48rem;
+  }
+  
+  &.modal-full {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+}
+
+// Confirmation modal styles
+.confirm-modal {
+  .modal-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    
+    &.icon-danger {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+    }
+    
+    &.icon-warning {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+    }
+    
+    &.icon-info {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--info);
+    }
+  }
+}
