@@ -1,7 +1,16 @@
-from sqlalchemy import Column, Integer, String, Boolean, Text, DECIMAL, DateTime, ForeignKey
+from database import Base
+from sqlalchemy import (
+    DECIMAL,
+    Boolean,
+    Column,
+    DateTime,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+)
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from database import Base
 
 
 class User(Base):
@@ -32,7 +41,9 @@ class Item(Base):
     price = Column(DECIMAL(10, 2), default=0)
     quantity = Column(Integer, default=0)
     is_active = Column(Boolean, default=True)
-    owner_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    owner_id = Column(
+        Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
+    )
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
