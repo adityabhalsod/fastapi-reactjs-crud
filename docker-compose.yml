@@ -6,8 +6,6 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
       POSTGRES_DB: crudapp
-    ports:
-      - "5433:5432"  # Changed to avoid conflict with local PostgreSQL
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
