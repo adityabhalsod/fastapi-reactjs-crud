@@ -79,7 +79,7 @@ A modern full-stack CRUD application built with FastAPI (Python) backend and Rea
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/adityabhalsod/fastapi-reactjs-crud
 cd fastapi-reactjs-crud
 ```
 
